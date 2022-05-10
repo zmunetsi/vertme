@@ -388,6 +388,23 @@ return [
                 ],
             ],
         ],
+        // summernote
+        'Summernote' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js',
+                ]
+            ]
+    
+        ],
     ],
 
     /*

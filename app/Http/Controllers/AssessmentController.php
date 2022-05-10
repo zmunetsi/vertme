@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Assessment;
 
 class AssessmentController extends Controller
 {
@@ -23,7 +24,7 @@ class AssessmentController extends Controller
      */
     public function create()
     {
-        //
+        return view( 'assessment.create' );
     }
 
     /**
@@ -34,7 +35,20 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        //store assessment
+        $assessment = new Assessment();
+        $assessment->title = $request->title;
+        $assessment->description = $request->description;
+        $assessment->user_id = auth()->user()->id;
+        $assessment->status = 1;
+        $assessment->save();
+        //redirect to index
+        return redirect()->route('assessment.index');
+        
     }
 
     /**
@@ -45,7 +59,8 @@ class AssessmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $assessment = Assessment::find($id);
+        return view('assessment.show', compact('assessment'));
     }
 
     /**

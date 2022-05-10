@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AssessmentController;
+use App\Http\Controllers\API\QuestionController;
+use App\Http\Controllers\API\OptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+//  group routes middleware sunctum middleware
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::resource('assessments', AssessmentController::class);
+    Route::resource('questions', QuestionController::class);
+    Route::resource('options', OptionController::class);
+
 });
+
+
+
+
+
+

@@ -18,6 +18,8 @@
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Created At</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -50,27 +52,33 @@
                         {
                             text: '<i class="fa fa-import"></i> Create Assessment',
                             action: function ( e, dt, node, config ) {
+                                window.location.href = "{{ route('assessment.create') }}";
                                 
                             }
                         }
 
                     ],
-                    ajax: { 
-                        url: 'api/assessment',
-                        type: 'GET',
-                        dataType: 'json',
-                        dataSrc: function( json){
-                            console.log( json );
-                            return json;
-                        }
-
+                    ajax: {
+                        url: '/api/assessments',
+                        dataSrc: ''
                     },
                     rowId: 'id',
                     columns: [
-                        { "data": "id" },
-                        { "data": "name"},
-                        { "data": "description"},
-                        { "data": "" }
+                        { data: 'title' },
+                        { data: 'description' },
+                        { data: 'created_at' },
+                        { data: '', render: function ( data, type, row ) {
+                            if(row.status == 1) {
+                                return '<span class="badge badge-success">Active</span>';
+                            } else {
+                                return '<span class="badge badge-danger">Inactive</span>';
+                            }
+                        } },
+                        { data: '', render: function ( data, type, row ) {
+                            return '<a href="assessment/'+ row.id +'" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>';
+
+                          }
+                        }
                     ]
 
         });

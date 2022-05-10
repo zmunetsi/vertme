@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Database\Seeders\PermissionsTableSeeder;
 use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\ConnectRelationshipsSeeder;
+use Database\Seeders\QuestionOptionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,10 +20,11 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-            $this->call(PermissionsTableSeeder::class);
-            $this->call(RolesTableSeeder::class);
-            $this->call(ConnectRelationshipsSeeder::class);
-            $this->call(UsersTableSeeder::class);
+            // $this->call(PermissionsTableSeeder::class);
+            // $this->call(RolesTableSeeder::class);
+            // $this->call(ConnectRelationshipsSeeder::class);
+            // $this->call(UsersTableSeeder::class);
+            $this->call(QuestionOptionSeeder::class);
             //$this->call('UsersTableSeeder');
 
         Model::reguard();
