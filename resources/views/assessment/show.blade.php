@@ -1,5 +1,6 @@
 
 @extends('adminlte::page')
+@section('plugins.czMore', true)
 
 @section('title', 'Assessment')
 
@@ -41,5 +42,16 @@
 
 @section('js')
     <script>
+        jQuery(document).ready(function($){
+            $("#czContainer").czMore();
+            $("#czoptionContainer").czMore();
+
+            $('#createOptionModal').on('show.bs.modal', function(e) {
+
+            var questionId = $(e.relatedTarget).data('question-id');
+            $(e.currentTarget).find('input[name="question_id"]').val( questionId );
+
+            });
+        });
     </script>
 @stop

@@ -405,6 +405,17 @@ return [
             ]
     
         ],
+        'czMore' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/czMore.js',
+                ]
+            ]
+    
+        ],
     ],
 
     /*

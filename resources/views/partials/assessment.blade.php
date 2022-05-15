@@ -1,19 +1,24 @@
 <!-- assessment partial -->
-
+<!-- include createQuestionModal -->
+@include('partials.modals.question')
 <li class="list-group-item d-flex justify-content-between align-items-center active">
                 <div>
                         Questions
-                        <span class="badge badge-xs badge-danger badge-pill">14</span>
+                        @if($assessment->questions->count() > 0)
+                        <span class="badge badge-danger badge-pill">{{ $assessment->questions->count() }}</span>
+                        @else
+                        <span class="badge badge-danger badge-pill">0</span>
+                        @endif
                 </div>
                 <!-- icon to toggle modal -->
                 <div class="d-flex">
-                    <button class="btn">
+                    <a class="btn" href="{{ route('question.import', $assessment->id) }}">
                     Import questions
                         <span class="badge badge-xs badge-light badge-pill">
                             <i class="fas fa-file-import"></i>
                         </span>
-                    </button>
-                    <button class="btn">
+                    </a>
+                    <button class="btn" data-toggle="modal" data-target="#createQuestionModal">
                         Add questions
                         <span class="badge badge-xs badge-danger badge-pill">
                             <i class="fas fa-plus"></i>

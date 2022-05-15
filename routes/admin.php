@@ -25,5 +25,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('question', QuestionController::class);
     Route::resource('option', OptionController::class);
 
+    // import and exports
+
+    Route::get('assessments/export', [AssessmentController::class, 'export'])
+         ->name( 'assessment.export' );
+    Route::get('questions/import/{id}', [QuestionController::class, 'import'])
+        ->name( 'question.import' );
+    Route::get('options/import/{id}', [OptionController::class, 'import'])
+        ->name( 'option.import' );
+
+     // end emport and export
 
 });

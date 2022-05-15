@@ -1,3 +1,5 @@
+@include( 'partials.modals.option' )
+
 <li class="list-group-item d-flex justify-content-between flex-column">
                 <div class="d-flex justify-content-between flex-row my-3 active">
 <!-- show question  -->
@@ -18,17 +20,21 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center active bg-secondary">
                     <div>
                         Options
-                        <span class="badge badge-xs badge-danger badge-pill">5</span>
+                        @if($question->options->count() > 0)
+                        <span class="badge badge-primary badge-pill">{{ $question->options->count() }}</span>
+                        @else
+                        <span class="badge badge-primary badge-pill">0</span>
+                        @endif
                 </div>
                 <!-- icon to toggle modal -->
                 <div class="d-flex">
-                    <button class="btn">
+                <a class="btn" href="{{ route('option.import', $question->id) }}">
                     Import options
                         <span class="badge badge-xs badge-light badge-pill">
                             <i class="fas fa-file-import"></i>
                         </span>
-                    </button>
-                    <button class="btn">
+                    </a>
+                    <button class="btn" data-question-id={{ $question->id }} data-toggle="modal" data-target="#createOptionModal">
                         Add options
                         <span class="badge badge-xs badge-danger badge-pill">
                             <i class="fas fa-plus"></i>

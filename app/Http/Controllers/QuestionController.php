@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Question;
+use App\Imports\QuestionsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class QuestionController extends Controller
 {
@@ -34,7 +37,25 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate the request
+        $this->validate($request, [
+            'questions' => 'required'
+        ]);
+
+       //loop through the questions
+         foreach($request->questions as $question){
+                $question = new Question(
+                    [
+                        'question' => $question,
+                        'assessment_id' => $request->assessment_id
+                    ]
+                );
+                $question->save();
+         }
+
+        //redirect to the assessment page
+        return redirect()->route('assessment.show', ['assessment' => $request->assessment_id]);
+
     }
 
     /**
@@ -81,4 +102,13 @@ class QuestionController extends Controller
     {
         //
     }
+
+    public function import( $id ) 
+    {
+        $assessment_id = $id;
+        Excel::import(new QuestionsImport( $assessment_id ), 'questions.xlsx', 'admin');
+        
+        return redirect()->back()->with('success', 'All good!');
+    }
+
 }

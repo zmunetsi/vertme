@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Assessment;
+use App\Exports\AssessmentsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AssessmentController extends Controller
 {
@@ -96,4 +98,10 @@ class AssessmentController extends Controller
     {
         //
     }
+
+    public function export() 
+    {
+        return Excel::download(new AssessmentsExport, 'assessments.xlsx');
+    }
+
 }

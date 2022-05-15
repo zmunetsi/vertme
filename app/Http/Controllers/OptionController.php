@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Option;
+use App\Imports\OptionsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OptionController extends Controller
 {
@@ -34,7 +37,30 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate the request
+        $this->validate($request, [
+            'options' => 'required',    
+            'question_id' => 'required|exists:questions,id',
+            'values' => 'required',
+        ]);
+
+
+        $options = $request->options;
+        $values = $request->values;
+        $question_id = $request->question_id;
+
+        foreach ($options as $key => $option) {
+            $newOption = new Option;
+            $newOption->option = $option;
+            $newOption->value = $values[$key];
+            $newOption->question_id = $question_id;
+            $newOption->save();
+        
+        }
+
+        return redirect()->back();
+
+
     }
 
     /**
@@ -81,4 +107,13 @@ class OptionController extends Controller
     {
         //
     }
+
+    public function import( $id ) 
+    {
+        $question_id = $id;
+        Excel::import(new OptionsImport( $question_id ), 'options.xlsx', 'admin');
+        
+        return redirect()->back()->with('success', 'All good!');
+    }
+
 }

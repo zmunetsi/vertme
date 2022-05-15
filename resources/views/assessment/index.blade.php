@@ -44,8 +44,9 @@
                         'selectAll',
                         'selectNone',
                         {
-                            text: '<i class="fa fa-import"></i> Import Assessments',
+                            text: '<i class="fa fa-import"></i> Export Assessments',
                             action: function ( e, dt, node, config ) {
+                                window.location.href = "{{ route('assessment.export') }}";
                                 
                             }
                         },
