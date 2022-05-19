@@ -11,9 +11,9 @@
                     <a href="#" class="btn btn-primary">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="#" class="btn btn-danger">
+                    <button  href="#" class="btn btn-danger" >
                         <i class="fas fa-trash-alt"></i>
-                    </a>
+                    </button>
                 </div>
                 </div>
                 <ul class="list-group list-group-flush">

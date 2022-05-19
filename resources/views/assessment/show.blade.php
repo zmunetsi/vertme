@@ -48,10 +48,17 @@
 
             $('#createOptionModal').on('show.bs.modal', function(e) {
 
-            var questionId = $(e.relatedTarget).data('question-id');
-            $(e.currentTarget).find('input[name="question_id"]').val( questionId );
+                var questionId = $(e.relatedTarget).data('question-id');
+                $(e.currentTarget).find('input[name="question_id"]').val( questionId );
 
             });
+
+            $('#deleteOptionModal').on('show.bs.modal', function(e) {
+                var optionId = $(e.relatedTarget).data('optionid');
+                $(e.currentTarget).find('form').attr('action', '/admin/option/' + optionId);
+            });
+
+
         });
     </script>
 @stop

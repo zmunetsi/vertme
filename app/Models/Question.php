@@ -27,4 +27,13 @@ class Question extends Model
         return $this->hasMany(Option::class);
     }
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($question) { // before delete() method call this
+             $question->options()->delete();
+        });
+    }
+    
+
 }

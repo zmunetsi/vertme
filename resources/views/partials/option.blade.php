@@ -10,9 +10,9 @@
         <a href="#" class="btn btn-primary">
             <i class="fas fa-edit"></i>
         </a>
-        <a href="#" class="btn btn-danger">
+        <button href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteOptionModal" data-optionid="{{ $option->id }}">
             <i class="fas fa-trash-alt"></i>
-        </a>
+        </button>
     </div>
     </div>
 </li>

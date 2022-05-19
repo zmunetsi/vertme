@@ -73,7 +73,8 @@ class AssessmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $assessment = Assessment::find($id);
+        return view('assessment.edit', compact('assessment'));
     }
 
     /**
@@ -85,7 +86,20 @@ class AssessmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+        $assessment = Assessment::find( $id );
+ 
+        $assessment->title = $request->title;
+        $assessment->description = $request->description;
+        $assessment->save();
+        
+        return redirect()->route('assessment.index');
+
+
     }
 
     /**
@@ -96,7 +110,9 @@ class AssessmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $assessment = Assessment::find( $id );
+        $assessment->delete();
+        return redirect()->back();
     }
 
     public function export() 

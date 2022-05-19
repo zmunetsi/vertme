@@ -11,6 +11,7 @@
 @stop
 
 @section('content')
+@include('partials.modals.assessment')
     <div class="row">
         <div class="col-md-12">
         <table style="width: 100% !important" id="assessment-table" class="table">
@@ -76,13 +77,21 @@
                             }
                         } },
                         { data: '', render: function ( data, type, row ) {
-                            return '<a href="assessment/'+ row.id +'" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>';
+                            return '<div class="d-flex justify-content-around"><a href="assessment/'+ row.id +'" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a><a href="assessment/'+ row.id +'/edit" class="btn btn-sm btn-secondary mx-2"><i class="fa fa-edit"></i></a><button data-assessmentid="'+ row.id +'" data-toggle="modal" data-target="#deleteAssessmentModal" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></div>';
 
                           }
                         }
                     ]
 
         });
+
+        // 
+        $('#deleteAssessmentModal').on('show.bs.modal', function(e) {
+        var assessmentId = $(e.relatedTarget).data('assessmentid');
+        $(e.currentTarget).find('form').attr('action', '/admin/assessment/' + assessmentId);
+        });
+
+
     } );
     </script>
 @stop
