@@ -36,4 +36,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 
      // end emport and export
 
+    //  multi deletes
+    Route::post('assessments/delete-all', [AssessmentController::class, 'deleteAll'])
+        ->name( 'assessment.delete-all' );
+
+    Route::post('questions/delete-all', [QuestionController::class, 'deleteAll'])
+        ->name( 'question.delete-all' );
+
+    Route::post('options/delete-all', [OptionController::class, 'deleteAll'])
+        ->name( 'option.delete-all' );
+
+    // multi deletes
+
 });

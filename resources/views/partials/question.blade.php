@@ -11,7 +11,7 @@
                     <a href="#" class="btn btn-primary">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <button  href="#" class="btn btn-danger" >
+                    <button  href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteQuestionModal" data-questionid="{{ $question->id }}" >
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
@@ -36,8 +36,14 @@
                     </a>
                     <button class="btn" data-question-id={{ $question->id }} data-toggle="modal" data-target="#createOptionModal">
                         Add options
-                        <span class="badge badge-xs badge-danger badge-pill">
+                        <span class="badge badge-xs badge-primary badge-pill">
                             <i class="fas fa-plus"></i>
+                        </span>
+                    </button>
+                    <button class="btn" data-questionid={{ $question->id }} data-toggle="modal" data-target="#deleteAllOptionModal">
+                        Delete options
+                        <span class="badge badge-xs badge-light badge-pill">
+                            <i class="fas fa-trash"></i>
                         </span>
                     </button>
                 </div>

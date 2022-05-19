@@ -24,6 +24,12 @@
                             <i class="fas fa-plus"></i>
                         </span>
                     </button>
+                    <button class="btn" data-assessmentid={{ $assessment->id }} data-toggle="modal" data-target="#deleteAllQuestionModal">
+                        Delete questions
+                        <span class="badge badge-xs badge-light badge-pill">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                    </button>
                 </div>
 </li>
 <!-- include the question partial -->

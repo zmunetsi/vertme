@@ -119,4 +119,12 @@ class OptionController extends Controller
         return redirect()->back()->with('success', 'All good!');
     }
 
+    public function deleteAll ( Request $request )
+    {
+      $questionId = $request->question_id;
+        Option::where('question_id', $questionId)->delete();
+        return redirect()->back();
+    }
+
+
 }

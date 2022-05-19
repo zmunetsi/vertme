@@ -114,4 +114,11 @@ class QuestionController extends Controller
         return redirect()->back()->with('success', 'All good!');
     }
 
+    public function deleteAll ( Request $request )
+    {
+        $assessmentId = $request->assessment_id;
+        Question::where('assessment_id', $assessmentId)->delete();
+        return redirect()->back();
+    }
+
 }

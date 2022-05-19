@@ -53,9 +53,28 @@
 
             });
 
+            $('#deleteQuestionModal').on('show.bs.modal', function(e) {
+                var questionId = $(e.relatedTarget).data('questionid');
+                $(e.currentTarget).find('form').attr('action', '/admin/question/' + questionId);
+            });
+
             $('#deleteOptionModal').on('show.bs.modal', function(e) {
                 var optionId = $(e.relatedTarget).data('optionid');
                 $(e.currentTarget).find('form').attr('action', '/admin/option/' + optionId);
+            });
+
+            $('#deleteAllQuestionModal').on('show.bs.modal', function(e) {
+
+                var assessmentId = $(e.relatedTarget).data('assessmentid');
+                $(e.currentTarget).find('input[name="assessment_id"]').val( assessmentId );
+
+            });
+
+            $('#deleteAllOptionModal').on('show.bs.modal', function(e) {
+
+                var questionId = $(e.relatedTarget).data('questionid');
+                $(e.currentTarget).find('input[name="question_id"]').val( questionId );
+
             });
 
 

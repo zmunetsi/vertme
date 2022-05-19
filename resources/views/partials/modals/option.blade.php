@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<!-- delete assessment modal -->
+<!-- delete option modal -->
 <div class="modal fade" id="deleteOptionModal" tabindex="-1" role="dialog" aria-labelledby="deleteOptionModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -55,6 +55,31 @@
                     {{ method_field('DELETE') }}
                     <div class="form-group">
                         <p> This option will be deleted
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete all options modal -->
+<div class="modal fade" id="deleteAllOptionModal" tabindex="-1" role="dialog" aria-labelledby="deleteAllOptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteAllOptionModalLabel">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="deleteAllOptionForm" action="{{ route('option.delete-all')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="question_id" value="{{ $question->id }}">
+                    <div class="form-group">
+                        <p> All the options in this question will be deleted!
                     </div>
                     <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">No</button>
                     <button type="submit" class="btn btn-danger">Yes</button>
