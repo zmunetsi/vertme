@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Question;
+use Question;
+use AssessmentCategory;
+
 
 class Assessment extends Model
 {
@@ -27,4 +29,11 @@ class Assessment extends Model
         return $this->hasMany(Question::class);
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(AssessmentCategory::class);
+        
+    }
+
+    
 }

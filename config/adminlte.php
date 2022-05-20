@@ -237,39 +237,55 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'User management',
-            'url'  => 'admin/users',
-            'can'  => 'is-admin',
-            'icon'        => 'fas fa-user',
-        ],
-        [
-            'text' => 'Create token',
-            'url'  => 'admin/tokens/create',
-            'can'  => 'is-admin',
-            'icon'        => 'fas fa-user',
-        ],
-        [
-            'text' => 'Roles',
-            'url'  => 'admin/role',
-            'can'  => 'is-admin',
-            'icon'        => 'fas fa-user-tag',
-        ],
-        [
-            'text' => 'Permissions',
-            'url'  => 'admin/permission',
-            'can'  => 'is-admin',
-            'icon'        => 'fas fa-user-lock',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
+        // [
+        //     'text' => 'User management',
+        //     'url'  => 'admin/users',
+        //     'can'  => 'is-admin',
+        //     'icon'        => 'fas fa-user',
+        // ],
+        // [
+        //     'text' => 'Create token',
+        //     'url'  => 'admin/tokens/create',
+        //     'can'  => 'is-admin',
+        //     'icon'        => 'fas fa-user',
+        // ],
+        // [
+        //     'text' => 'Roles',
+        //     'url'  => 'admin/role',
+        //     'can'  => 'is-admin',
+        //     'icon'        => 'fas fa-user-tag',
+        // ],
+        // [
+        //     'text' => 'Permissions',
+        //     'url'  => 'admin/permission',
+        //     'can'  => 'is-admin',
+        //     'icon'        => 'fas fa-user-lock',
+        // ],
         [
             'text' => 'Assessments',
             'url'  => 'admin/assessment',
             'can'  => 'is-admin',
             'icon'        => 'far fa-question-circle',
+            'submenu' => [
+                
+                [
+                    'text' => 'Assessments',
+                    'url'  => 'admin/assessment',
+                    'can'  => 'is-admin',
+                    'icon'        => 'far fa-question-circle',
+                ],
+                [
+                    'text' => 'Categories',
+                    'url'  => 'admin/assessment/category',
+                    'can'  => 'is-admin',
+                    'icon'        => 'fas fa-list-alt',
+                ],
+            ]
+
         ]
     ],
 

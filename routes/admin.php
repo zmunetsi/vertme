@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AdminController as AuthAdminController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\OptionController;
+use App\Http\Controllers\AssessmentCategoryController;
 
 //add admin routes
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
@@ -20,10 +21,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('logout', [AuthAdminController::class, 'logout'])
         ->name('admin.logout')
         ->withoutMiddleware(['auth', 'role:admin']);
-        
+
+    Route::resource('assessment/category', AssessmentCategoryController::class);
     Route::resource('assessment', AssessmentController::class);
     Route::resource('question', QuestionController::class);
     Route::resource('option', OptionController::class);
+
+    
 
     // import and exports
 

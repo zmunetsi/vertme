@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AssessmentController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\OptionController;
+use App\Http\Controllers\API\AssessmentCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ use App\Http\Controllers\API\OptionController;
 
 //  group routes middleware sunctum middleware
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+
+    Route::resource('assessments/categories',AssessmentCategoryController::class);
 
     Route::resource('assessments', AssessmentController::class);
     Route::resource('questions', QuestionController::class);

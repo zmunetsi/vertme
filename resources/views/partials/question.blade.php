@@ -7,7 +7,7 @@
                         <h6 class="mb-0">{{ $question->question }}</h6>
                     </div>  
                 <!-- actions to edit and delete question -->
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="btn-group" role="group" aria-label="Question actions">
                     <a href="#" class="btn btn-primary">
                         <i class="fas fa-edit"></i>
                     </a>
@@ -34,13 +34,13 @@
                             <i class="fas fa-file-import"></i>
                         </span>
                     </a>
-                    <button class="btn" data-question-id={{ $question->id }} data-toggle="modal" data-target="#createOptionModal">
+                    <button class="btn" data-question-id="{{ $question->id }}" data-toggle="modal" data-target="#createOptionModal">
                         Add options
                         <span class="badge badge-xs badge-primary badge-pill">
                             <i class="fas fa-plus"></i>
                         </span>
                     </button>
-                    <button class="btn" data-questionid={{ $question->id }} data-toggle="modal" data-target="#deleteAllOptionModal">
+                    <button class="btn" data-questionid="{{ $question->id }}" data-toggle="modal" data-target="#deleteAllOptionModal">
                         Delete options
                         <span class="badge badge-xs badge-light badge-pill">
                             <i class="fas fa-trash"></i>

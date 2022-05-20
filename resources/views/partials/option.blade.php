@@ -6,7 +6,7 @@
         </div>
         
     <!-- actions to edit and delete question -->
-    <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn-group" role="group" aria-label="Option actions">
         <a href="#" class="btn btn-primary">
             <i class="fas fa-edit"></i>
         </a>

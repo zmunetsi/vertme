@@ -5,7 +5,7 @@
 @section('content_header')
 <div class="row">
     <div class="col-md-12">
-     <h1>Assessments | Edit</h1>
+     <h1>Assessments | Create</h1>
     </div>
 </div>
 @stop
@@ -14,12 +14,11 @@
     <div class="row">
         <div class="col-md-12">
             <!-- form to create asessments -->
-            <form action="{{ route('assessment.update', $assessment->id) }}" method="POST">
+            <form action="{{ route('assessment.store') }}" method="POST">
                 @csrf
-                {{ method_field('PUT') }}
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ $assessment->title }}" placeholder="Enter title">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
                     <!-- errors -->
                     @if ($errors->has('title'))
                         <span class="invalid-feedback" role="alert">
@@ -29,9 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter description">
-                    {{ $assessment->description }}
-                    </textarea>
+                    <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter description"></textarea>
                     <!-- errors -->
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
