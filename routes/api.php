@@ -25,6 +25,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('questions', QuestionController::class);
     Route::resource('options', OptionController::class);
 
+    //update assessment status
+    Route::post('assessments/update-status', [AssessmentController::class, 'updateStatus'])
+        ->name('assessment.update-status');
+
+
 });
 
 

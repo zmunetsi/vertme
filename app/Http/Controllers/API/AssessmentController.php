@@ -86,4 +86,28 @@ class AssessmentController extends Controller
     {
         //
     }
+
+    public function updateStatus(Request $request)
+    {
+        $assessmentId = $request->assessmentId;
+        $status = $request->status;
+
+        $assessment = Assessment::find($assessmentId);
+        $assessment->status = $status;
+        $assessment->save();
+        
+        if($assessment){
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Assessment status updated successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Assessment status not updated'
+            ]);
+        }
+        
+    }
 }
