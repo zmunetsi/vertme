@@ -20,6 +20,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Created At</th>
+                    <th>Categories</th>
                     <th>Status</th>
                     <th></th>
                 </tr>
@@ -70,7 +71,19 @@
                     columns: [
                         { data: 'title' },
                         { data: 'description' },
-                        { data: 'created_at' },
+                        { data: '', render:  function ( data, type, row){
+                            return moment(row.created_at).format('MMMM Do YYYY, h:mm:ss a');
+                        } },
+                        { data: '',
+                            render: function ( data, type, row ) {
+                                var categories = row.categories;
+                                var category_string = "";
+                                for (var i = 0; i < categories.length; i++) {
+                                    category_string += '<span class="badge badge-primary mr-2">' + categories[i].name + '</span>';
+                                }
+                                return category_string;
+                            }
+                         },
                         { data: '', render: function ( data, type, row ) {
                             // return form to update status
                             var statusChecked = row.status == 1 ? 'checked' : '';

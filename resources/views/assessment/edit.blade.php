@@ -27,6 +27,20 @@
                         </span>
                     @endif
                 </div>
+                <!-- categories -->
+                <div class="form-group">
+                    <label for="categories">Categories</label>
+                    <select class="form-control" id="assessment_category_id" name="assessment_category_id[]" multiple>
+                        @foreach ($assessmentCategories as $category)
+                            <option value="{{ $category->id }}" {{ in_array($category->id, $assessment->categories->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    <!-- errors -->
+                    @if ($errors->has('assessment_category_id'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('assessment_category_id') }}</strong>
+                        </span>
+                    @endif
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter description">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssessmentCategoryTable extends Migration
+class CreateAssessmentAssessmentCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAssessmentCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('assessment_category', function (Blueprint $table) {
+        Schema::create('assessment_assessment_category', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('assessment_id');
             $table->foreign('assessment_id')->references('id')->on('assessments');
@@ -30,6 +30,6 @@ class CreateAssessmentCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assessment_category');
+        Schema::dropIfExists('assessment_assessment_category');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Assessment;
+use App\Models\AssessmentCategory;
 use App\Exports\AssessmentsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -26,7 +27,9 @@ class AssessmentController extends Controller
      */
     public function create()
     {
-        return view( 'assessment.create' );
+
+        $assessmentCategories = AssessmentCategory::all();
+        return view( 'assessment.create', compact( 'assessmentCategories' ) );
     }
 
     /**
@@ -37,6 +40,7 @@ class AssessmentController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -48,9 +52,11 @@ class AssessmentController extends Controller
         $assessment->user_id = auth()->user()->id;
         $assessment->status = 1;
         $assessment->save();
-        //redirect to index
-        return redirect()->route('assessment.index');
-        
+        // attach assessment categories
+        $assessment->categories()->attach($request->assessment_category_id);
+
+        return redirect()->route('assessment.index')->with('success', 'Assessment created successfully');
+
     }
 
     /**
@@ -73,8 +79,10 @@ class AssessmentController extends Controller
      */
     public function edit($id)
     {
+
+        $assessmentCategories = AssessmentCategory::all();
         $assessment = Assessment::find($id);
-        return view('assessment.edit', compact('assessment'));
+        return view('assessment.edit', compact('assessment', 'assessmentCategories'));
     }
 
     /**
@@ -92,10 +100,12 @@ class AssessmentController extends Controller
         ]);
 
         $assessment = Assessment::find( $id );
- 
         $assessment->title = $request->title;
         $assessment->description = $request->description;
         $assessment->save();
+
+        // attach assessment categories
+        $assessment->categories()->sync($request->assessment_category_id);
         
         return redirect()->route('assessment.index');
 
@@ -111,6 +121,7 @@ class AssessmentController extends Controller
     public function destroy($id)
     {
         $assessment = Assessment::find( $id );
+        $assessment->categories()->detach();
         $assessment->delete();
         return redirect()->back();
     }

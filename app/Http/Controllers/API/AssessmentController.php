@@ -15,8 +15,8 @@ class AssessmentController extends Controller
      */
     public function index()
     {
-        //api call to get all assessments
-        $assessments = Assessment::all();
+        //api call to get all assessments with categories
+        $assessments = Assessment::with('categories')->get();
         return response()->json($assessments);
         
     }

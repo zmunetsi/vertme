@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Question;
-use AssessmentCategory;
+use App\Models\Question;
+use App\Models\AssessmentCategory;
 
 
 class Assessment extends Model
