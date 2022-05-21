@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-
+@section('plugins.moment', true)
 @section('title', 'Assessment')
 
 @section('content_header')

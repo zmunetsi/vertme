@@ -432,6 +432,17 @@ return [
             ]
     
         ],
+        'moment' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js',
+                ]
+            ]
+    
+        ],
     ],
 
     /*
