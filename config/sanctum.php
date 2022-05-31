@@ -16,10 +16,8 @@ return [
     */
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s','pure-river-91014.herokuapp.com',
-        'vertme.munetsizunguzira.com',
-        'vertme.munetsizunguzira.com','vertme.peoplecreate.co.za','peoplecreate.co.za',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+        '%s%s',
+        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,vertme.peoplecreate.co.za,pure-river-91014.herokuapp.com',
         Sanctum::currentApplicationUrlWithPort()
     ))),
 
