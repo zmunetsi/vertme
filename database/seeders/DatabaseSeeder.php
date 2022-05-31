@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             $this->call(ConnectRelationshipsSeeder::class);
             $this->call(UsersTableSeeder::class);
            // $this->call(QuestionOptionSeeder::class);
-            $this->call('UsersTableSeeder');
+           // $this->call('UsersTableSeeder');
 
         Model::reguard();
     }
