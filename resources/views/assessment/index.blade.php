@@ -5,7 +5,7 @@
 @section('content_header')
 <div class="row">
     <div class="col-md-12">
-     <h1>Assessments | </h1> 
+     <h1>Assessments | </h1>
     </div>
 </div>
 @stop
@@ -37,7 +37,7 @@
 @stop
 
 @section('js')
-    <script> 
+    <script>
     jQuery(document).ready( function ( $ ) {
         $('#assessment-table').DataTable({
             language: {
@@ -51,21 +51,27 @@
                             text: '<i class="fa fa-import"></i> Export Assessments',
                             action: function ( e, dt, node, config ) {
                                 window.location.href = "{{ route('assessment.export') }}";
-                                
+
                             }
                         },
                         {
                             text: '<i class="fa fa-import"></i> Create Assessment',
                             action: function ( e, dt, node, config ) {
                                 window.location.href = "{{ route('assessment.create') }}";
-                                
+
                             }
                         }
 
                     ],
                     ajax: {
                         url: '/api/assessments',
-                        dataSrc: ''
+                        dataSrc: '',
+                        dataType: 'json',
+                        xhrFields: {
+                        withCredentials: true
+                        },
+                        crossDomain: true
+
                     },
                     rowId: 'id',
                     columns: [
@@ -104,13 +110,13 @@
 
         });
 
-        // 
+        //
         $('#deleteAssessmentModal').on('show.bs.modal', function(e) {
         var assessmentId = $(e.relatedTarget).data('assessmentid');
         $(e.currentTarget).find('form').attr('action', '/admin/assessment/' + assessmentId);
         });
         //
-     
+
 
 
     } );
@@ -118,7 +124,7 @@
     <script>
         function statusChange(){
             $this = event.target;
-            var status = $this.checked ? 1 : 0;  
+            var status = $this.checked ? 1 : 0;
 
             var assessmentId = $($this).data('assessmentid');
             var token = $('input[name="_token"]').val();
@@ -135,9 +141,9 @@
                     'X-CSRF-TOKEN': token
                 },
                 success: function( response ){
-                    
+
                     if(response.status == 'success'){
-                        
+
                         $(document).Toasts('create', {
                             title: 'Assessment Status Updated',
                             body: 'Assessment status updated successfully',
