@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Vertme</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vertme-logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -191,9 +191,9 @@ return [
     'dashboard_url' => 'admin',
     'logout_url' => 'admin/logout',
     'login_url' => 'admin/login',
-    //'register_url' => 'register',
-    'password_reset_url' => 'admin/password/reset',
-    'password_email_url' => 'admin/password/email',
+    'register_url' => false,
+    'password_reset_url' => false,
+    'password_email_url' => false,
     'profile_url' => false,
 
     /*
@@ -265,6 +265,7 @@ return [
         //     'can'  => 'is-admin',
         //     'icon'        => 'fas fa-user-lock',
         // ],
+       
         [
             'text' => 'Assessments',
             'url'  => 'admin/assessment',

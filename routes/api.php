@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AssessmentController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\OptionController;
 use App\Http\Controllers\API\AssessmentCategoryController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,22 @@ use App\Http\Controllers\API\AssessmentCategoryController;
 */
 
 
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
+
 //  group routes middleware sunctum middleware
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+
+    //user
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    // login
 
 
     Route::resource('assessments/categories',AssessmentCategoryController::class);

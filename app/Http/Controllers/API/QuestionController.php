@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Question;
+use App\Models\Option;
 
 class QuestionController extends Controller
 {
@@ -14,7 +16,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        // questions with options
+        $questions = Question::with('options')->get();
+        return response()->json($questions, 200);
     }
 
     /**
