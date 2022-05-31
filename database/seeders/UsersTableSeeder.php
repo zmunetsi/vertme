@@ -28,9 +28,20 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('Akanakashe@1'),
             ]);
 
+            $demoAdmin = config('roles.models.defaultUser')::create([
+                'name'     => 'DemoAdmin',
+                'email'    => 'demoadmin@test.com',
+                'password' => bcrypt('demoadmin@test.com'),
+            ]);
+
             $newUser->attachRole($adminRole);
             foreach ($permissions as $permission) {
                 $newUser->attachPermission($permission);
+            }
+
+            $demoAdmin->attachRole($adminRole);
+            foreach ($permissions as $permission) {
+                $demoAdmin->attachPermission($permission);
             }
         }
 
