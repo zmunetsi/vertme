@@ -5,9 +5,32 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Assessment;
+use App\Models\Question;
+use App\Models\Option;
+use App\Models\AssessmentTrack;
 
 class AssessmentController extends Controller
 {
+
+    
+    private function calculateScore($assessment, $answers)
+    {
+        
+        if(!$assessment) {
+            return false;
+        }
+        $score = 0;
+        // llop over object answers
+        foreach( $answers as $key => $answer ) {
+            $questionId = $key;
+            $answerId = $answer;
+            // get value for answer
+            $answerValue = Option::where('id', $answerId)->first()->value;
+            $score += $answerValue;
+        }   
+        return $score;
+     }
+
     /**
      * Display a listing of the resource.
      *
@@ -110,4 +133,63 @@ class AssessmentController extends Controller
         }
         
     }
+
+    public function trackAssessment(Request $request)
+    {
+        $assessmentId = $request->assessmentId;
+        $userId = $request->user()->id;
+        $answers = $request->answers;
+
+        $assessment = Assessment::find($assessmentId);
+        $score = $this->calculateScore( $assessmentId, $answers);
+
+        // if score issset and is a number
+        if(isset($score) && is_numeric($score)){
+            $assessmentTrack = new AssessmentTrack();
+            $assessmentTrack->user_id = $userId;
+            $assessmentTrack->assessment_id = $assessmentId;
+            $assessmentTrack->score = $score;
+            if( $assessment->pass_mark > 0){
+                $assessmentTrack->completed = ($score >= $assessment->pass_mark) ? true : false;
+            }
+            else{
+                $assessmentTrack->completed = true;
+            }
+            $assessmentTrack->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Assessment tracked successfully',
+                'track' => $assessmentTrack
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Assessment not tracked',
+            ]);
+        }
+
+    }
+
+    public function getAssessmentTrack(Request $request)
+    {
+       
+        $userId = $request->user()->id;
+        $assessmentTrack = AssessmentTrack::where('user_id', $userId)->orderBy('id', 'desc')->first();
+         if($assessmentTrack){
+              return response()->json([
+                'status' => 'success',
+                'message' => 'Assessment track found',
+                'assessmentTrack' => $assessmentTrack
+              ]);
+         }
+         else{
+              return response()->json([
+                'status' => 'false',
+                'message' => 'Assessment track not found',
+              ]);
+         }
+    }
+
+    
 }

@@ -3,6 +3,7 @@
         <!-- show muted option -->
         <div class="d-flex flex-column">
             <h6 class="mb-0 text-muted">{{ $option->option }}</h6>
+            <small class="text-muted">{{ $option->value }}</small>
         </div>
         
     <!-- actions to edit and delete question -->

@@ -47,6 +47,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //update assessment status
     Route::post('assessments/update-status', [AssessmentController::class, 'updateStatus'])
         ->name('assessment.update-status');
+    
+    // assessment results
+    Route::post('assessments/track-assessment', [AssessmentController::class, 'trackAssessment'])
+        ->name('assessment.track');
+
+    Route::post('assessments/getassessment-track', [AssessmentController::class, 'getAssessmentTrack'])
+        ->name('assessment.gettrack');
 
 
 });

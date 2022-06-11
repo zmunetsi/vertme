@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\AssessmentTrack;
 use Illuminate\Http\Request;
-use App\Models\Question;
-use App\Models\Option;
 
-class QuestionController extends Controller
+class AssessmentTrackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +14,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        // questions with options
-        $questions = Question::with('options')->get();
-        // if error return server error
-        if (!$questions) {
-            return response()->json(['error' => 'Server error'], 500);
-        }
-
-        return response()->json($questions, 200);
+        //
     }
 
     /**
@@ -50,10 +41,10 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\AssessmentTrack  $assessmentTrack
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(AssessmentTrack $assessmentTrack)
     {
         //
     }
@@ -61,10 +52,10 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\AssessmentTrack  $assessmentTrack
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(AssessmentTrack $assessmentTrack)
     {
         //
     }
@@ -73,10 +64,10 @@ class QuestionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\AssessmentTrack  $assessmentTrack
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AssessmentTrack $assessmentTrack)
     {
         //
     }
@@ -84,10 +75,10 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\AssessmentTrack  $assessmentTrack
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AssessmentTrack $assessmentTrack)
     {
         //
     }
