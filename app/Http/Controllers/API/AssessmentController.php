@@ -155,12 +155,20 @@ class AssessmentController extends Controller
             else{
                 $assessmentTrack->completed = true;
             }
-            $assessmentTrack->save();
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Assessment tracked successfully',
-                'track' => $assessmentTrack
-            ]);
+            if($assessmentTrack->save()){
+                return response()->json([
+                        'status' => 'success',
+                        'message' => 'Assessment tracked successfully',
+                        'track' => $assessmentTrack      
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status' => 'false',
+                    'message' => 'Assessment not tracked'
+                ]);
+            }
+          
         }
         else{
             return response()->json([
