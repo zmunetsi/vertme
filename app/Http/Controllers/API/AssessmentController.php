@@ -139,7 +139,10 @@ class AssessmentController extends Controller
         $assessmentId = $request->assessmentId;
         $userId = $request->user()->id;
         $answers = $request->answers;
-
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Assessment tracked successfully'
+        ]);
         $assessment = Assessment::find($assessmentId);
         $score = $this->calculateScore( $assessmentId, $answers);
 
